@@ -44,21 +44,27 @@ const updatePost = (req, res) => {};
 const deleteBlogger = (req, res) => {};
 // update a blogger by id
 const updateBlogger = (req, res) => {};
+// get all posts
+const getAllPosts = (req, res) => {};
 // routes
-// app.route("api/v1/createpost").post(createPost);
 app.route("api/v1/bloggers").get(getAllBloggers).post(createBlogger);
 app
   .route("api/v1/bloggers/:id")
   .get(getBloggerById)
   .delete(deleteBlogger)
   .patch(updateBlogger);
-app.route("api/v1/bloggers/:id/posts").post(createPost);
-app.route("api/v1/bloggers/:id/posts").get(getBloggerPosts);
+//
+
+app.route("api/v1/bloggers/:id/posts").get(getBloggerPosts).post(createPost);
+//
+
 app
   .route("api/v1/bloggers/:id/posts/:postid")
   .get(singlePost)
   .delete(deletePost)
   .patch(updatePost);
+
+app.route("api/v1/posts").get(getAllPosts);
 
 // Start the server
 app.listen(4000, () => {
