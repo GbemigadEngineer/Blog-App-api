@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/GbemigadEngineer/Blog-App-api/issues"
   },
-  "homepage": "https://github.com/GbemigadEngineer/Blog-App-api#readme"
+  "homepage": "https://github.com/GbemigadEngineer/Blog-App-api#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
