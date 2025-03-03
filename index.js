@@ -91,26 +91,33 @@ const getAllPosts = (req, res) => {
     message: "All posts fetched successfully",
   });
 };
-// routes
-app.route("/api/v1/bloggers").get(getAllBloggers).post(createBlogger);
-app
-  .route("/api/v1/bloggers/:id")
+// resource routers
+const bloggersRouter = express.Router();
+const postsRouter = express.Router();
+
+// 
+
+bloggersRouter.route("/").get(getAllBloggers).post(createBlogger);
+bloggersRouter
+  .route("/:id")
   .get(getBloggerById)
   .delete(deleteBlogger)
   .patch(updateBlogger);
 //
 
-app.route("/api/v1/bloggers/:id/posts").get(getBloggerPosts).post(createPost);
+bloggersRouter.route("/:id/posts").get(getBloggerPosts).post(createPost);
 //
 
-app
-  .route("/api/v1/bloggers/:id/posts/:postid")
+bloggersRouter
+  .route("/:id/posts/:postid")
   .get(singlePost)
   .delete(deletePost)
   .patch(updatePost);
 
-app.route("/api/v1/posts").get(getAllPosts);
+postsRouter.route("/").get(getAllPosts);
 
+app.use("/api/v1/bloggers", bloggersRouter);
+app.use("/api/v1/posts", postsRouter);
 // Start the server
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
