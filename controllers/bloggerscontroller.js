@@ -1,4 +1,11 @@
 "use strict";
+
+// check ID middlewear
+exports.checkID = (req, res, next, val) => {
+  // code to check if the id is valid will go here
+  console.log(`Blogger id is ${val}`);
+  next();
+};
 // create a blogger,
 
 exports.createBlogger = (req, res) => {
