@@ -6,8 +6,10 @@ const postsRouter = require("./routes/postsroute");
 const fs = require("fs");
 
 const app = express();
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
-app.use(morgan("dev"));
 app.use(express.json());
 
 // resource routers
