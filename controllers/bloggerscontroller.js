@@ -51,22 +51,64 @@ exports.getAllBloggers = async (req, res) => {
 
 // get a blogger by id
 exports.getBloggerById = async (req, res) => {
-  try{
-    const blooger = await bloggersModel.findById(req.params.id);
+  try {
+    const blogger = await bloggersModel.findById(req.params.id);
     res.status(200).json({
       status: "success",
       message: "Blogger fetched successfully",
-      data:{
-        blooger
-      }
+      data: {
+        blogger,
+      },
     });
-  } catch(err){
+  } catch (err) {
     res.status(400).json({
       status: "Error!",
       message: err,
     });
   }
- 
+};
+
+// delete a blogger by id
+
+exports.deleteBlogger = async (req, res) => {
+  try {
+    await bloggersModel.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: "success",
+      message: "Blogger deleted successfully",
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Error!",
+      message: err,
+    });
+  }
+};
+// update a blogger by id
+
+exports.updateBlogger = async (req, res) => {
+  try {
+    const tour = await bloggersModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true, // To make sure the newly updated document is returned
+        runValidators: true, // To make sure the validators are run against the updated data
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "Blogger updated successfully",
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "Error!",
+      message: err,
+    });
+  }
 };
 
 // get all posts of a blogger by id
@@ -108,22 +150,5 @@ exports.updatePost = (req, res) => {
   res.status(200).json({
     status: "success",
     message: "Post updated successfully",
-  });
-};
-
-// delete a blogger by id
-
-exports.deleteBlogger = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Blogger deleted successfully",
-  });
-};
-// update a blogger by id
-
-exports.updateBlogger = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Blogger updated successfully",
   });
 };
