@@ -50,11 +50,23 @@ exports.getAllBloggers = async (req, res) => {
 };
 
 // get a blogger by id
-exports.getBloggerById = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Blogger fetched successfully",
-  });
+exports.getBloggerById = async (req, res) => {
+  try{
+    const blooger = await bloggersModel.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      message: "Blogger fetched successfully",
+      data:{
+        blooger
+      }
+    });
+  } catch(err){
+    res.status(400).json({
+      status: "Error!",
+      message: err,
+    });
+  }
+ 
 };
 
 // get all posts of a blogger by id
