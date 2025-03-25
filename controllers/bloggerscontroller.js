@@ -73,7 +73,7 @@ exports.getBloggerById = async (req, res) => {
 exports.deleteBlogger = async (req, res) => {
   try {
     await bloggersModel.findByIdAndDelete(req.params.id);
-    res.status(200).json({
+    res.status(204).json({
       status: "success",
       message: "Blogger deleted successfully",
     });
