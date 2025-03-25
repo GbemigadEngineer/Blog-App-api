@@ -1,27 +1,52 @@
 "use strict";
+const bloggersModel = require("../models/bloggersModel");
 
 // check ID middlewear
-exports.checkID = (req, res, next, val) => {
-  // code to check if the id is valid will go here
-  console.log(`Blogger id is ${val}`);
-  next();
-};
+// exports.checkID = (req, res, next, val) => {
+//   // code to check if the id is valid will go here
+//   console.log(`Blogger id is ${val}`);
+//   next();
+// };
 // create a blogger,
 
-exports.createBlogger = (req, res) => {
-  res.status(201).json({
-    status: "success",
-    message: "Blogger created successfully",
-  });
+exports.createBlogger = async (req, res) => {
+  try {
+    const newBlogger = await bloggersModel.create(req.body);
+
+    res.status(201).json({
+      status: "success!",
+      message: "Blogger created successfully",
+      data: {
+        blogger: newBlogger,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Error!",
+      message: "Failed to create a new blogger!", // Later we would learn how to handle error diffrently, dont write errors like this for real world production apps
+      err,
+    });
+  }
 };
 
 // get all bloggers,
 
-exports.getAllBloggers = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "All bloggers fetched successfully",
-  });
+exports.getAllBloggers = async (req, res) => {
+  try {
+    const allBlogers = await bloggersModel.find();
+    res.status(200).json({
+      status: "success",
+      message: "All bloggers fetched successfully",
+      data: {
+        allBlogers,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Error!",
+      message: err,
+    });
+  }
 };
 
 // get a blogger by id

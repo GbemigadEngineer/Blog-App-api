@@ -3,7 +3,7 @@ const express = require("express");
 const bloggerController = require("../controllers/bloggerscontroller");
 const router = express.Router();
 
-router.param("id", bloggerController.checkID);
+// router.param("id", bloggerController.checkID);
 
 
 router
