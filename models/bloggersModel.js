@@ -17,6 +17,14 @@ const bloggersSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  followers: {
+    type: Number,
+    default: 0,
+  },
+  following: {
+    type: Number,
+    default: 0,
+  },
   
 });
 

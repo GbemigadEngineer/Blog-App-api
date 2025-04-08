@@ -33,6 +33,13 @@ exports.createBlogger = async (req, res) => {
 
 exports.getAllBloggers = async (req, res) => {
   try {
+    // Build query
+    // filtering
+    const queryObj = { ...req.query }; // this creates a new copy of the  req.query
+    const excludedFields = ["page", "sort", "limit", "fields"]; // These are the properties / fields/ keys that i want to be excuded from my query string
+    excludedFields.forEach((el) => {
+      delete queryObj[el];
+    });
     const allBlogers = await bloggersModel.find();
     res.status(200).json({
       status: "success",

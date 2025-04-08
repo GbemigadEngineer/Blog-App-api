@@ -1,17 +1,21 @@
-
 // posts Schema
 const postsSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  date: String,
+  title: { type: String, required: true },
+  author, //Author would be the username of the blogger creating the post
+  date: { type: Date, default: Date.now },
   content: {
     type: String,
     required: true,
   },
 });
 
+// Psot methods 
+
+postsSchema.statics.getAllPosts()={
+  
+}
 //  Middlewear to generate postid automatically
-// us e'validaate to make sure the middle wear runs before validation
+// use'validaate to make sure the middle wear runs before validation
 // postsSchema.pre("validate", async function (next) {
 //   if (!this.postid) {
 //     try {
@@ -29,17 +33,4 @@ const postsSchema = new mongoose.Schema({
 // Create the post model
 const Post = mongoose.model("Post", postsSchema);
 
-// create an instance of the post model
-
-const newpost = new Post({
-  content: "Hello welcome to my blog space!",
-});
-
-newpost
-  .save()
-  .then((doc) => {
-    console.log(`${doc}, succesfully saved to db`);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+module.exports = Post;
