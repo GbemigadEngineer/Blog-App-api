@@ -25,9 +25,12 @@ const bloggersSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const bloggersModel = mongoose.model("bloggers", bloggersSchema);
 
-module.exports = bloggersModel
+module.exports = bloggersModel;

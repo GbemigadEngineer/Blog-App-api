@@ -6,6 +6,7 @@ const router = express.Router();
 // router.param("id", bloggerController.checkID);
 
 
+
 router
   .route("/")
   .get(bloggerController.getAllBloggers)
@@ -18,17 +19,6 @@ router
 
 //
 
-router
-  .route("/:id/posts")
-  .get(bloggerController.getBloggerPosts)
-  .post(bloggerController.createPost);
 
-//
-
-router
-  .route("/:id/posts/:postid")
-  .get(bloggerController.singlePost)
-  .delete(bloggerController.deletePost)
-  .patch(bloggerController.updatePost);
 
 module.exports = router;
