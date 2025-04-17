@@ -5,8 +5,6 @@ const router = express.Router();
 
 // router.param("id", bloggerController.checkID);
 
-
-
 router
   .route("/")
   .get(bloggerController.getAllBloggers)
@@ -18,7 +16,5 @@ router
   .patch(bloggerController.updateBlogger);
 
 //
-
-
 
 module.exports = router;

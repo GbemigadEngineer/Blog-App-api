@@ -11,9 +11,9 @@ if (process.env.NODE_ENV === "development") {
   // this is a development middlewear that logs all the requests to the console in morgan format
   app.use(morgan("dev"));
   // this is a development middlewear that logs all the requests with queries to the console
-  app.use(controller.printQuery);
-  // this is a development middlewear that logs all the requests object to the console
-  app.use(controller.printRequest);
+  // app.use(controller.printQuery);
+  // // this is a development middlewear that logs all the requests object to the console
+  // app.use(controller.printRequest);
 }
 
 app.use(express.json());
