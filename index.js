@@ -1,12 +1,13 @@
 "use strict";
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
-const bloggersRouter = require("./routes/bloggersroute");
-// const postsRouter = require("./routes/postsroute");
-const fs = require("fs");
-const controller = require("./controllers/bloggerscontroller");
 
+// Create Express App
 const app = express();
+
+// Middleware
+app.use(cors()); // this is a middleware that allows cross-origin requests
 if (process.env.NODE_ENV === "development") {
   // this is a development middlewear that logs all the requests to the console in morgan format
   app.use(morgan("dev"));
@@ -18,9 +19,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-// resource routers
+// resource route
+app.use("api/v1/users", require("./routes/authroutes"));
 
-app.use("/api/v1/bloggers", bloggersRouter);
-// app.use("/api/v1/posts", postsRouter);
 
 module.exports = app;
