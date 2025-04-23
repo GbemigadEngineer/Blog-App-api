@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 
 // resource route
-app.use("api/v1/users", require("./routes/authroutes"));
+app.use("/api/v1/users", require("./routes/authroutes"));
 
 
 module.exports = app;
