@@ -25,6 +25,12 @@ const userSchema = mongoose.Schema(
       unique: [true, "Phone number already exists"],
       trim: true,
     },
+    usertype: {
+      type: String,
+      required: [true, "User type is required."],
+      default: "blogger",
+      enum: ["blogger", "admin"],
+    },
   },
   { timestamps: true }
 );

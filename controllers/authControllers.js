@@ -54,7 +54,7 @@ const signupUserController = async (req, res) => {
       message: error.message,
     });
   }
-};
+}
 
 module.exports = {
   signupUserController,
