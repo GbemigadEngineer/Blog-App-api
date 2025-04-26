@@ -21,6 +21,6 @@ app.use(express.json());
 
 // resource route
 app.use("/api/v1/users", require("./routes/authroutes"));
-
+app.use("/api/v1/post", require("./routes/postroutes"));
 
 module.exports = app;
